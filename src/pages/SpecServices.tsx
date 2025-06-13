@@ -3,21 +3,20 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import ChatBot from '../components/ChatBot';
 import { ChatBotProvider } from '../contexts/ChatBotContext';
-import { ShoppingCart, Megaphone, TrendingUp, Users, Home } from 'lucide-react';
+import { ShoppingCart, Megaphone, TrendingUp, Users, Home, Bot, FileText, Calendar } from 'lucide-react';
 import '../animations.css';
 
 const SpecServices = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [selectedNiche, setSelectedNiche] = useState('E-Commerce');
   const [hoveredNiche, setHoveredNiche] = useState<string | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const niches = ['E-Commerce', 'Marketing', 'Sales', 'Coaching', 'Real-Estate'];
 
   const nicheContent = {
     'E-Commerce': [
       {
-        icon: ShoppingCart,
+        icon: Bot,
         title: 'Inventory Automation',
         description: 'AI-powered stock management and reordering'
       },
@@ -34,7 +33,7 @@ const SpecServices = () => {
     ],
     'Marketing': [
       {
-        icon: Megaphone,
+        icon: FileText,
         title: 'Content Generation',
         description: 'AI-created marketing copy and campaigns'
       },
@@ -44,7 +43,7 @@ const SpecServices = () => {
         description: 'Automated prospect qualification and ranking'
       },
       {
-        icon: Users,
+        icon: Megaphone,
         title: 'Social Media Automation',
         description: 'Scheduled posting and engagement'
       }
@@ -56,7 +55,7 @@ const SpecServices = () => {
         description: 'Streamlined pipeline and follow-up processes'
       },
       {
-        icon: TrendingUp,
+        icon: FileText,
         title: 'Proposal Generation',
         description: 'AI-powered custom proposals'
       },
@@ -73,12 +72,12 @@ const SpecServices = () => {
         description: 'Automated client milestone monitoring'
       },
       {
-        icon: Users,
+        icon: Calendar,
         title: 'Session Scheduling',
         description: 'Smart calendar and reminder systems'
       },
       {
-        icon: Megaphone,
+        icon: FileText,
         title: 'Content Delivery',
         description: 'Personalized learning path automation'
       }
@@ -95,7 +94,7 @@ const SpecServices = () => {
         description: 'Automated buyer/seller screening'
       },
       {
-        icon: TrendingUp,
+        icon: FileText,
         title: 'Document Processing',
         description: 'Streamlined contract and paperwork handling'
       }
@@ -103,13 +102,9 @@ const SpecServices = () => {
   };
 
   const handleNicheChange = (niche: string) => {
-    if (niche === selectedNiche) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
+    if (niche !== selectedNiche) {
       setSelectedNiche(niche);
-      setIsTransitioning(false);
-    }, 200);
+    }
   };
 
   const getIndicatorPosition = () => {
@@ -161,12 +156,10 @@ const SpecServices = () => {
             <section className="pt-32 pb-8 relative">
               <div className="container mx-auto px-6 text-center relative z-10">
                 <div className="hero-headline">
-                  <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-                    <span className="block dynamic-gradient-text">
-                      Specific Niche Services
-                    </span>
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                    <span className="dynamic-gradient-text">Specific Niche Services</span>
                   </h1>
-                  <p className="hero-subtitle text-lg font-light text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed tracking-wide">
+                  <p className="hero-subtitle text-lg font-light text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed tracking-wide">
                     Industry-focused AI solutions tailored to meet the unique challenges and opportunities of your specific sector.
                   </p>
                 </div>
@@ -174,11 +167,11 @@ const SpecServices = () => {
             </section>
 
             {/* Niche Selector Section */}
-            <section className="py-16 relative">
+            <section className="pb-16 relative">
               <div className="container mx-auto px-6 relative z-10">
                 <div className="animate-on-scroll max-w-4xl mx-auto">
                   {/* Niche Selector */}
-                  <div className="relative bg-black/20 backdrop-blur-sm rounded-full p-2 border border-white/10 mb-16">
+                  <div className="relative bg-black/20 backdrop-blur-sm rounded-full p-2 border border-white/10 mb-12">
                     <div className="flex relative">
                       {/* Moving indicator */}
                       <div 
@@ -209,12 +202,11 @@ const SpecServices = () => {
                   </div>
 
                   {/* Dynamic Cards Section */}
-                  <div className={`grid md:grid-cols-3 gap-8 transition-all duration-300 ${isTransitioning ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}>
+                  <div className="grid md:grid-cols-3 gap-8">
                     {nicheContent[selectedNiche as keyof typeof nicheContent].map((service, index) => (
                       <div
                         key={`${selectedNiche}-${index}`}
                         className={`animate-on-scroll feature-card bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm p-8 hover:bg-white/10 group stagger-${index + 1}`}
-                        style={{ animationDelay: `${index * 100}ms` }}
                       >
                         <div className="w-16 h-16 dynamic-gradient-icon rounded-lg flex items-center justify-center mb-6 feature-icon">
                           <service.icon className="w-8 h-8 text-white" />
