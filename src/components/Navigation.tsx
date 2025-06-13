@@ -5,7 +5,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
-  const [showSpecificDropdown, setShowSpecificDropdown] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -104,51 +103,13 @@ const Navigation = () => {
                         <div className="font-medium">General Services</div>
                         <div className="text-xs text-gray-500 mt-1">Comprehensive AI solutions</div>
                       </Link>
-                      <div 
-                        className="relative"
-                        onMouseEnter={() => setShowSpecificDropdown(true)}
-                        onMouseLeave={() => setShowSpecificDropdown(false)}
+                      <Link
+                        to="/specservices"
+                        className="nav-dropdown-item block px-6 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200"
                       >
-                        <div className="nav-dropdown-item flex items-center justify-between px-6 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer">
-                          <div>
-                            <div className="font-medium">Specific Niche</div>
-                            <div className="text-xs text-gray-500 mt-1">Industry-focused solutions</div>
-                          </div>
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showSpecificDropdown ? 'rotate-180' : ''}`} />
-                        </div>
-                        
-                        {/* Specific Niche Nested Dropdown */}
-                        <div className={`nested-dropdown absolute left-full top-0 w-56 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl ml-2 shadow-2xl overflow-hidden ${showSpecificDropdown ? 'show' : ''}`}>
-                          <Link 
-                            to="/specservices?niche=ecommerce" 
-                            className="nav-dropdown-item block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5"
-                          >
-                            <div className="font-medium">E-Commerce</div>
-                            <div className="text-xs text-gray-500 mt-1">Online retail automation</div>
-                          </Link>
-                          <Link 
-                            to="/specservices?niche=marketing" 
-                            className="nav-dropdown-item block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5"
-                          >
-                            <div className="font-medium">Marketing</div>
-                            <div className="text-xs text-gray-500 mt-1">AI-driven campaigns</div>
-                          </Link>
-                          <Link 
-                            to="/specservices?niche=sales" 
-                            className="nav-dropdown-item block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5"
-                          >
-                            <div className="font-medium">Sales</div>
-                            <div className="text-xs text-gray-500 mt-1">Revenue optimization</div>
-                          </Link>
-                          <Link 
-                            to="/specservices?niche=coaching" 
-                            className="nav-dropdown-item block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200"
-                          >
-                            <div className="font-medium">Coaching</div>
-                            <div className="text-xs text-gray-500 mt-1">Personal development AI</div>
-                          </Link>
-                        </div>
-                      </div>
+                        <div className="font-medium">Specific Niche</div>
+                        <div className="text-xs text-gray-500 mt-1">Industry-focused solutions</div>
+                      </Link>
                     </div>
                   </div>
                 ) : (
